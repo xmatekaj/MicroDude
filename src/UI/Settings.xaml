@@ -1,0 +1,64 @@
+﻿<Window x:Class="MicroDude.UI.Settings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MicroDude Settings" Height="600" Width="600">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!-- AVRDUDE Configuration -->
+        <GroupBox Header="AVRDUDE Configuration" Grid.Row="0" Margin="0,0,0,20">
+            <StackPanel Margin="10">
+                <TextBlock Text="Select AVRDUDE.exe file:"/>
+                <DockPanel Margin="0,5,0,0">
+                    <Button DockPanel.Dock="Right" Content="Browse" Width="70" Margin="5,0,0,0" Click="BrowseButton_Click"/>
+                    <TextBox x:Name="AvrdudePathTextBox" Height="22"
+                             Text="{Binding AvrDudePath, UpdateSourceTrigger=PropertyChanged}"
+                             TextChanged="AvrdudePathTextBox_TextChanged"/>
+                </DockPanel>
+                <!-- Programmer Selection -->
+                <TextBlock Text="Select Programmer:" Margin="0,10,0,5"/>
+                <ComboBox x:Name="ProgrammerComboBox" 
+                          ItemsSource="{Binding Programmers}" 
+                          DisplayMemberPath="Id" 
+                          SelectedValuePath="Id" 
+                          SelectedValue="{Binding Programmer, Mode=TwoWay}"
+                          SelectionChanged="ProgrammerComboBox_SelectionChanged"
+                          Margin="0,0,0,10"/>
+                <!-- New: Programmer Description -->
+                <TextBlock Text="Programmer Description:" FontWeight="Bold" Margin="0,5,0,5"/>
+                <TextBlock x:Name="ProgrammerDescriptionTextBlock" 
+                           Text="{Binding ElementName=ProgrammerComboBox, Path=SelectedItem.Description}" 
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,10" Height="22"/>
+                <!-- Auto Flash Option -->
+                <CheckBox x:Name="AutoFlashCheckBox" 
+                          Content="Auto Flash" ToolTip="Auto Flash the chip after successful compilation"
+                          IsChecked="{Binding AutoFlash, Mode=TwoWay}"
+                          Margin="0,0,0,5"/>
+            </StackPanel>
+        </GroupBox>
+        <!-- About/Info Section -->
+        <GroupBox Header="About MicroDude" Grid.Row="2" Margin="0,0,0,20">
+            <StackPanel Margin="10">
+                <TextBlock TextWrapping="Wrap">
+                    MicroDude is an extension for Microchip Studio that brings AvrDude capabilities to your development environment.
+                </TextBlock>
+                <TextBlock Margin="0,10,0,0"  TextWrapping="Wrap">If you find this tool useful please consider buying me a coffee:
+                    <Hyperlink NavigateUri="https://buycoffee.to/matekaj" RequestNavigate="Hyperlink_RequestNavigate">Buy Me A Coffee</Hyperlink> or 
+                    <Hyperlink NavigateUri="https://buycoffee.to/matekaj" RequestNavigate="Hyperlink_RequestNavigate">Buy Me A Coffee [PL]</Hyperlink>
+                </TextBlock>
+                <StackPanel HorizontalAlignment="Left">
+                    <TextBlock Margin="0,10,0,0" Text="Version: 0.1"/>
+                    <TextBlock Text="Author: Mateusz Kajdas"/>
+                    <TextBlock>Icons by <Hyperlink NavigateUri="https://icons8.com" RequestNavigate="Hyperlink_RequestNavigate">icons8.com</Hyperlink></TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+        <!-- Save Button -->
+        <Button Content="Save Settings" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="100" Height="30" Click="SaveButton_Click"/>
+    </Grid>
+</Window>

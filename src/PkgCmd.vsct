@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+  <Include href="KnownImageIds.vsct"/>
+
+  <Commands package="guidMicroDudePkg">
+
+    <!-- Groups -->
+    <Groups>
+      <!-- Toolbar -->
+      <Group guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId" />
+
+      <!-- Contextual Menu -->
+      <Group guid="guidMicroDudeCmdSet" id="MicroDudeContextualMenuId" priority="0x0001">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_ITEMNODE"/>
+      </Group>
+
+      <Group guid="guidMicroDudeCmdSet" id="MicroDudeToolsMenuId" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_MENU_TOOLS"/>
+      </Group>
+    </Groups>
+
+
+
+    <!-- Menus -->
+    <Menus>
+      <Menu guid="guidMicroDudeCmdSet" id="MicroDudeToolbar" type="Toolbar">
+        <Strings>
+          <ButtonText>MicroDude</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <!-- Buttons -->
+    <Buttons>
+      <!-- Contextual Menu -->
+      <Button guid="guidMicroDudeCmdSet" id="DetectCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidMicroDudeCmdSet" id="MicroDudeContextualMenuId"/>
+        <Icon guid="guidIconDetect" id="IconDetect" />
+        <Strings>
+          <CommandName>Detect</CommandName>
+          <ButtonText>Detect</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidMicroDudeCmdSet" id="FlashCommandId" priority="0x0101" type="Button">
+        <Parent guid="guidMicroDudeCmdSet" id="MicroDudeContextualMenuId"/>
+        <Icon guid="guidIconFlash" id="IconFlash" />
+        <Strings>
+          <CommandName>CommandFlash</CommandName>
+          <ButtonText>Flash</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidMicroDudeCmdSet" id="FlashAutoCommandId" priority="0x0102" type="Button">
+        <Parent guid="guidMicroDudeCmdSet" id="MicroDudeContextualMenuId"/>
+        <Icon guid="guidIconFlashAuto" id="IconFlashAuto" />
+        <Strings>
+          <CommandName>CommandFlashAuto</CommandName>
+          <ButtonText>Auto Flash</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidMicroDudeCmdSet" id="SettingsCommandId" type="Button">
+        <Parent guid="guidMicroDudeCmdSet" id="MicroDudeContextualMenuId"/>
+        <Icon guid="guidIconSettings" id="IconSettings" />
+        <Strings>
+          <ButtonText>Settings</ButtonText>
+        </Strings>
+      </Button>
+
+      <!-- Toolbar -->
+      <Button guid="guidMicroDudeCmdSet" id="FlashCommandId" type="Button">
+        <Icon guid="guidIconFlash" id="IconFlash" />
+        <Strings>
+          <ButtonText>Flash</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidMicroDudeCmdSet" id="FuseCommandId" type="Button">
+        <Icon guid="guidIconFuse" id="IconFuse" />
+        <Strings>
+          <ButtonText>Fuse bits</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidMicroDudeCmdSet" id="OscillatorCommandId" type="Button">
+        <Icon guid="guidIconOscillator" id="IconOscillator" />
+        <Strings>
+          <ButtonText>Oscillator</ButtonText>
+        </Strings>
+      </Button>
+      <!--<Button guid="guidMicroDudeCmdSet" id="SettingsCommandId" type="Button">
+				<Icon guid="guidIconSettings" id="IconSettings" />
+				<Strings>
+					<ButtonText>Settings</ButtonText>
+				</Strings>
+			</Button>-->
+
+      <!-- Menu -->
+      <Button guid="guidMicroDudeCmdSet" id="SettingsCommandId" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLS_OBJSUBSET"/>
+        <!--<Parent guid="guidMicroDudeCmdSet" id="MicroDudeToolsMenuId"/>-->
+        <Icon guid="guidIconMicroDudeSettings" id="IconMicroDudeSettings"/>
+        <Strings>
+          <ButtonText>MicroDude</ButtonText>
+          <MenuText>MicroDude</MenuText>
+          <ToolTipText>Settings for MicroDude extension. It brings AvrDude capabilities to MicroChip Studio.</ToolTipText>
+          <CanonicalName>.View.MicroDudeSettings</CanonicalName>
+          <LocCanonicalName>.View.MicroDudeSettings</LocCanonicalName>
+        </Strings>
+      </Button>
+    </Buttons>
+
+    <!-- Bitmaps-->
+    <Bitmaps>
+      <Bitmap guid="guidIconDetect" href="Resources\Icon_Detect.png" usedList="IconDetect" />
+      <Bitmap guid="guidIconFlash" href="Resources\Icon_Flash.png" usedList="IconFlash" />
+      <Bitmap guid="guidIconFlashAuto" href="Resources\Icon_Flash_Auto.png" usedList="IconFlashAuto" />
+      <Bitmap guid="guidIconFuse" href="Resources\Icon_Fuse.png" usedList="IconFuse" />
+      <Bitmap guid="guidIconOscillator" href="Resources\Icon_Oscillator.png" usedList="IconOscillator" />
+      <!-- General settings icon -->
+      <Bitmap guid="guidIconSettings" href="Resources\Icon_Settings.png" usedList="IconSettings" />
+      <!-- Logo icon used in Tool's menu -->
+      <Bitmap guid="guidIconMicroDudeSettings" href="Resources\Icon_MicroDudeSettings.png" usedList="IconMicroDudeSettings" />
+    </Bitmaps>
+  </Commands>
+
+
+  <CommandPlacements>
+
+    <!-- Context menu -->
+    <CommandPlacement guid="guidMicroDudeCmdSet" id="MicroDudeContextualMenuId" priority="0x0000">
+      <Parent guid="guidSHLMainMenu" id="IDM_VS_CTXT_CODEWIN"/>
+    </CommandPlacement>
+
+    <!-- Toolbar -->
+    <CommandPlacement guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId" priority="0x0001">
+      <Parent guid="guidMicroDudeCmdSet" id="MicroDudeToolbar"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidMicroDudeCmdSet" id="DetectCommandId" priority="0x0001" >
+      <Parent guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidMicroDudeCmdSet" id="FlashCommandId" priority="0x0002" >
+      <Parent guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidMicroDudeCmdSet" id="FuseCommandId" priority="0x0003" >
+      <Parent guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId"/>
+    </CommandPlacement>
+    <CommandPlacement guid="guidMicroDudeCmdSet" id="OscillatorCommandId" priority="0x0004" >
+      <Parent guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId"/>
+    </CommandPlacement>
+    <!--<CommandPlacement guid="guidMicroDudeCmdSet" id="SettingsCommandId" priority="0x0005" >
+			<Parent guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId"/>
+		</CommandPlacement>-->
+
+  </CommandPlacements>
+
+
+  <!--This section is where you can associate a command with a keyboard shortcut; this association is
+  valid within a specific UI context, that is when the shell is inside a specific mode, e.g. during
+  debugging, editing a file or when the user is using a specific designer.-->
+  <KeyBindings>
+    <!--
+    To define a binding, we have to specify the sequence of keys to press to activate the command (keystate).
+    A key binding can use one or two key and optionally up to two modifiers (Alt, Control or Shift keys); the
+    keys are specified using the key1 and key2 attributes (key2 can be omitted) and the modifiers using the
+    mod1 and mod2 attributes (both optional).
+
+    The editor attribute is used to specify the UI context that activates the key binding.
+
+    Notice that Visual Studio has a lot of components and commands, so it can be difficult to find a
+    key binding not used by somebody else; if the key bindings are conflicting only one will be used
+    and one problem is that the shell will not inform the user that a conflict was found. The only
+    way to detect the problem is to start Visual Studio under debugger, try to execute any command
+    and look if there is a message in the output window about a duplicated accelerator found.
+    -->
+
+    <!--
+    In this example we want to use the <Control><1> binding for the first command defined in
+    the Buttons section above, so this is its definition:
+    -->
+    <KeyBinding guid="guidMicroDudeCmdSet" id="cmdidMyCommand" editor="guidVSStd97" key1="1" mod1="Control" />
+  </KeyBindings>
+
+
+  <!--
+  In this example we have always used descriptive names for the GUIDs and numeric IDs inside the definition
+  of the elements. The VSCT compiler actually enforces the usage of these names instead of hard-coding
+  the numbers in the definitions.
+
+  We have also seen that the compiler can read some of these constants from the files imported with the
+  "Extern" tag at the beginning of the file. The problem is then how to define the other constants.
+
+  The "Symbols" section is where this association between descriptive names and actual values happen.
+  -->
+  <Symbols>
+    <!-- Graphics -->
+    <GuidSymbol name="guidIconDetect" value="{fcb34ff2-7b5b-4c64-a9ad-2342ad4cba51}">
+      <IDSymbol name="IconDetect" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidIconFlash" value="{c03d9bed-ea37-4992-b154-7434133b9856}">
+      <IDSymbol name="IconFlash" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidIconFlashAuto" value="{cf79f8cd-487c-4d26-8b63-8b45e20923c7}">
+      <IDSymbol name="IconFlashAuto" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidIconFuse" value="{ebbeafdf-76bc-4e32-b34d-8d663c710117}">
+      <IDSymbol name="IconFuse" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidIconOscillator" value="{764314b2-ba6d-4c6d-9d55-b0d44e566006}">
+      <IDSymbol name="IconOscillator" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidIconMicroDudeSettings" value="{005090f0-7f61-469e-a19c-a511a91b7502}">
+      <IDSymbol name="IconMicroDudeSettings" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidIconSettings" value="{af5452c5-22b2-42e3-b2c0-c68a97ec9b14}">
+      <IDSymbol name="IconSettings" value="1" />
+    </GuidSymbol>
+
+    <GuidSymbol name="guidMicroDudeCmdSet" value="{c0246e5e-2d78-442d-8ded-229e9ca7c0c6}">
+      <IDSymbol name="MicroDudeToolbar" value="0x1020" />
+      <IDSymbol name="ToolbarCommandsGroupId" value="0x1021" />
+      <IDSymbol name="MicroDudeContextualMenuId" value="0x1022" />
+      <IDSymbol name="MicroDudeToolsMenuId" value="0x1023" />
+
+      <IDSymbol name="DetectCommandId" value="0x0101" />
+      <IDSymbol name="FlashCommandId" value="0x0102" />
+      <IDSymbol name="FuseCommandId" value="0x0103" />
+      <IDSymbol name="OscillatorCommandId" value="0x0104" />
+      <IDSymbol name="SettingsCommandId" value="0x0105" />
+      <IDSymbol name="FlashAutoCommandId" value="0x0106" />
+
+    </GuidSymbol>
+
+      <GuidSymbol name="guidMicroDudePkg" value="{3C7C5ABE-82AC-4A37-B077-0FF60E8B1FD3}" />
+
+
+    <GuidSymbol name="guidMicroDudeCmdSet" value="{c0246e5e-2d78-442d-8ded-229e9ca7c0c6}">
+      <IDSymbol name="MicroDudeToolbar" value="0x1020" />
+      <IDSymbol name="ToolbarCommandsGroupId" value="0x1021" />
+      <IDSymbol name="DetectCommandId" value="0x0101" />
+      <IDSymbol name="FlashCommandId" value="0x0102" />
+      <IDSymbol name="MyToolbar" value="0x101" />
+      <IDSymbol name="MyMenuGroup" value="0x1010" />
+      <IDSymbol name="MyToolbarGroup" value="0x1011" />
+      <IDSymbol name="MyMainToolbarGroup" value="0x1012" />
+      <IDSymbol name="MyEditorCtxGroup" value="0x1013" />
+      <IDSymbol name="cmdidMyCommand" value="0x2001" />
+      <IDSymbol name="cmdidMyGraph" value="0x2002" />
+      <IDSymbol name="cmdidMyZoom" value="0x2003" />
+      <IDSymbol name="cmdidDynamicTxt" value="0x2004" />
+      <IDSymbol name="cmdidDynVisibility1" value="0x2005" />
+      <IDSymbol name="cmdidDynVisibility2" value="0x2006" />
+    </GuidSymbol>
+
+  </Symbols>
+</CommandTable>
