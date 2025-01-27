@@ -22,12 +22,22 @@ namespace MicroDude
         public const int cmdidOscillatorCommandId = 0x0104;
         public const int cmdidSettingsCommandId = 0x0105;
         public const int cmdidFlashAutoCommandId = 0x0106;
+        public const int cmdidVerifyCommandId = 0x0107;
+        public const int cmdidLockBitsCommandId = 0x0108;
+
         public const int cmdidIconDetect = 0x0001;
         public const int cmdidIconFlash = 0x0001;
         public const int cmdidIconFlashAuto = 0x0001;
+        public const int cmdidIconFlashAutoDisabled = 0x0001;
+        public const int cmdidIconVerify = 0x0001;
         public const int cmdidIconFuse = 0x0001;
         public const int cmdidIconOscillator = 0x0001;
         public const int cmdidIconMicroDudeSettings = 0x0001;
         public const int cmdidIconSettings = 0x0001;
+        public const int cmdidIconLockBits = 0x0001;
+
+        public const int DetectTextControlId = 0x1100;
+        public const int DetectTextControlListId = 0x1101;
+
     }
 }

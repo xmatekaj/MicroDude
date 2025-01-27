@@ -14,9 +14,10 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
   <Metadata>
     <Identity Id="c34f9b7f-68f8-4cff-aa0b-f53c5aebcc1e" Version="0.1" Language="en-US" Publisher="Mateusz Kajdas" />
     <DisplayName>MicroDude</DisplayName>
-    <Description xml:space="preserve">AvrDude support for Microchip Studio (formerly known as Atmel Studio)</Description>
+    <Description xml:space="preserve">AvrDude support for Microchip Studio / Atmel Studio</Description>
     <MoreInfo>https://github.com/xmatekaj/MicroDude</MoreInfo>
     <Icon>Resources\Logo_MicroDude.png</Icon>
+    <PreviewImage>Preview.png</PreviewImage>
     <Tags>avr, microcontroller, avrdude, microchip, atmel, atmega, attiny, usbasp</Tags>
   </Metadata>
   <Installation InstalledByMsi="false">
@@ -30,6 +31,7 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
     <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="AvrDude/avrdude.exe" />
     <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="File" Path="AvrDude/avrdude.conf" />
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%|" />
   </Assets>
   <Prerequisites>
     <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />

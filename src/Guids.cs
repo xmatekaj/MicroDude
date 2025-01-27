@@ -30,16 +30,27 @@ namespace MicroDude
         public const string guidIconFlashAutoString = "cf79f8cd-487c-4d26-8b63-8b45e20923c7";
         public static Guid guidIconFlashAuto = new Guid(guidIconFlashAutoString);
 
+        public const string guidIconFlashAutoDesiabledString = "007801bf-1ef4-4848-8168-6872d3175a6a";
+        public static Guid guidIconFlashAutoDisabled = new Guid(guidIconFlashAutoString);
+
+        public const string guidIconVerifyString = "b2c74325-17a2-4b1e-8d21-9e7c88a6e438";
+        public static Guid guidIconVerify = new Guid(guidIconVerifyString);
+
         public const string guidIconFuseString = "ebbeafdf-76bc-4e32-b34d-8d663c710117";
         public static Guid guidIconFuse = new Guid(guidIconFuseString);
 
         public const string guidIconOscillatorString = "764314b2-ba6d-4c6d-9d55-b0d44e566006";
         public static Guid guidIconOscillator = new Guid(guidIconOscillatorString);
 
+        public const string guidIconLockBitsString = "a00e4112-e05e-4c1c-8f72-206a66c62bed";
+        public static Guid guidIconLockBits = new Guid(guidIconLockBitsString);
+        
+
         public const string guidIconMicroDudeSettingsString = "005090f0-7f61-469e-a19c-a511a91b7502";
         public static Guid guidIconMicroDudeSettings = new Guid(guidIconMicroDudeSettingsString);
 
         public const string guidIconSettingsString = "af5452c5-22b2-42e3-b2c0-c68a97ec9b14";
         public static Guid guidIconSettings = new Guid(guidIconSettingsString);
+
     }
 }

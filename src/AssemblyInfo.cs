@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("MicroDude")]
-[assembly: AssemblyDescription("AvrDude support for Microchip Studio (formerly known as Atmel Studio)")]
+[assembly: AssemblyDescription("AvrDude support for Microchip Studio (Atmel Studio)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mateusz Kajdas")]
 [assembly: AssemblyProduct("MicroDude")]
-[assembly: AssemblyCopyright("Copyright © Mateusz kajdas")]
+[assembly: AssemblyCopyright("Copyright © Mateusz Kajdas")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -30,5 +30,5 @@ using System.Runtime.InteropServices;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("0.1.0.0")]
+[assembly: AssemblyFileVersion("0.1.0.0")]

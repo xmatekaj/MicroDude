@@ -11,5 +11,44 @@
     <Setting Name="Programmer" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="RecentlyUsedProgrammers" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AvrdudeConfHash" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Programmers" Type="System.Collections.Specialized.StringCollection" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="OutputDestination" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">2</Value>
+    </Setting>
+    <Setting Name="AutoDetectUsb" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Port" Type="System.String" Scope="User">
+      <Value Profile="(Default)">USB</Value>
+    </Setting>
+    <Setting Name="ColoredOutputEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ErrorColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFDC143C</Value>
+    </Setting>
+    <Setting Name="WarningColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FFD4AF37</Value>
+    </Setting>
+    <Setting Name="SuccessColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF008000</Value>
+    </Setting>
+    <Setting Name="InfoColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF808080</Value>
+    </Setting>
+    <Setting Name="MicroDudeColor" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF4682B4</Value>
+    </Setting>
+    <Setting Name="Verbose" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

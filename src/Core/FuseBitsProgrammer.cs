@@ -16,6 +16,10 @@ namespace MicroDude.Core
         public List<string> AvailableFuses { get; private set; }
         public Dictionary<string, List<FuseBitOption>> FuseBitOptions { get; private set; }
 
+        public FuseBitProgrammer()
+        {
+        }
+
         public FuseBitProgrammer(string xmlFilePath)
         {
             _parser = new MicrocontrollerParser(xmlFilePath);
@@ -70,8 +74,6 @@ namespace MicroDude.Core
 
         public void ReadFusesFromMicrocontroller()
         {
-            // Tu dodaj kod do odczytu fuse bitów z mikrokontrolera
-            // Na razie ustawiam przykładowe wartości
             foreach (var fuse in AvailableFuses)
             {
                 SetFuseValue(fuse, (byte)new Random().Next(256));

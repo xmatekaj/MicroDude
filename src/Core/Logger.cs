@@ -16,4 +16,19 @@ public static class Logger
             System.Diagnostics.Debug.WriteLine($"Failed to write to log file: {ex.Message}");
         }
     }
+
+    public static void ClearLog()
+    {
+        try
+        {
+            if (File.Exists(logFilePath))
+            {
+                File.Delete(logFilePath);
+            }
+        }
+        catch
+        {
+            // Silently fail if we can't delete the log file
+        }
+    }
 }

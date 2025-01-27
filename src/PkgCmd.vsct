@@ -52,14 +52,35 @@
           <ButtonText>Flash</ButtonText>
         </Strings>
       </Button>
+      <Button guid="guidMicroDudeCmdSet" id="VerifyCommandId" priority="0x0103" type="Button">
+        <Parent guid="guidMicroDudeCmdSet" id="MicroDudeContextualMenuId"/>
+        <Icon guid="guidIconVerify" id="IconVerify" />
+        <Strings>
+          <CommandName>Verify</CommandName>
+          <ButtonText>Verify Flash</ButtonText>
+        </Strings>
+      </Button>
       <Button guid="guidMicroDudeCmdSet" id="FlashAutoCommandId" priority="0x0102" type="Button">
+        <Parent guid="guidMicroDudeCmdSet" id="MicroDudeContextualMenuId"/>
+        <Icon guid="guidIconFlashAuto" id="IconFlashAuto" />
+        <CommandFlag>DynamicVisibility</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>IconAndText</CommandFlag>
+        <CommandFlag>DefaultInvisible</CommandFlag>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <Strings>
+          <CommandName>CommandFlashAuto</CommandName>
+          <ButtonText>Auto-Flash</ButtonText>
+        </Strings>
+      </Button>
+      <!--<Button guid="guidMicroDudeCmdSet" id="FlashAutoCommandId" priority="0x0102" type="Button">
         <Parent guid="guidMicroDudeCmdSet" id="MicroDudeContextualMenuId"/>
         <Icon guid="guidIconFlashAuto" id="IconFlashAuto" />
         <Strings>
           <CommandName>CommandFlashAuto</CommandName>
           <ButtonText>Auto Flash</ButtonText>
         </Strings>
-      </Button>
+      </Button>-->
       <Button guid="guidMicroDudeCmdSet" id="SettingsCommandId" type="Button">
         <Parent guid="guidMicroDudeCmdSet" id="MicroDudeContextualMenuId"/>
         <Icon guid="guidIconSettings" id="IconSettings" />
@@ -87,6 +108,14 @@
           <ButtonText>Oscillator</ButtonText>
         </Strings>
       </Button>
+      <Button guid="guidMicroDudeCmdSet" id="LockBitsCommandId" type="Button">
+        <Icon guid="guidIconLockBits" id="IconLockBits" />
+        <Strings>
+          <ButtonText>Lock Bits</ButtonText>
+        </Strings>
+      </Button>
+
+      
       <!--<Button guid="guidMicroDudeCmdSet" id="SettingsCommandId" type="Button">
 				<Icon guid="guidIconSettings" id="IconSettings" />
 				<Strings>
@@ -109,13 +138,26 @@
       </Button>
     </Buttons>
 
+    <Combos>
+      <Combo guid="guidMicroDudeCmdSet" id="DetectTextControlId" defaultWidth="100" type="DropDownCombo" priority="0x0101" idCommandList="DetectTextControlListId">
+        <Parent guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId"/>
+        <CommandFlag>NoKeyCustomize</CommandFlag>
+        <Strings>
+          <ButtonText>Detected: </ButtonText>
+        </Strings>
+      </Combo>
+    </Combos>
+
     <!-- Bitmaps-->
     <Bitmaps>
       <Bitmap guid="guidIconDetect" href="Resources\Icon_Detect.png" usedList="IconDetect" />
       <Bitmap guid="guidIconFlash" href="Resources\Icon_Flash.png" usedList="IconFlash" />
       <Bitmap guid="guidIconFlashAuto" href="Resources\Icon_Flash_Auto.png" usedList="IconFlashAuto" />
+      <Bitmap guid="guidIconFlashAutoDisabled" href="Resources\Icon_Flash_Auto_Disabled.png" usedList="IconFlashAutoDisabled" />
+      <Bitmap guid="guidIconVerify" href="Resources\Icon_Verify.png" usedList="IconVerify" />
       <Bitmap guid="guidIconFuse" href="Resources\Icon_Fuse.png" usedList="IconFuse" />
       <Bitmap guid="guidIconOscillator" href="Resources\Icon_Oscillator.png" usedList="IconOscillator" />
+      <Bitmap guid="guidIconLockBits" href="Resources\Icon_Lock.png" usedList="IconLockBits" />
       <!-- General settings icon -->
       <Bitmap guid="guidIconSettings" href="Resources\Icon_Settings.png" usedList="IconSettings" />
       <!-- Logo icon used in Tool's menu -->
@@ -147,6 +189,9 @@
     <CommandPlacement guid="guidMicroDudeCmdSet" id="OscillatorCommandId" priority="0x0004" >
       <Parent guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId"/>
     </CommandPlacement>
+    <CommandPlacement guid="guidMicroDudeCmdSet" id="LockBitsCommandId" priority="0x0008" >
+      <Parent guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId"/>
+    </CommandPlacement>
     <!--<CommandPlacement guid="guidMicroDudeCmdSet" id="SettingsCommandId" priority="0x0005" >
 			<Parent guid="guidMicroDudeCmdSet" id="ToolbarCommandsGroupId"/>
 		</CommandPlacement>-->
@@ -154,43 +199,10 @@
   </CommandPlacements>
 
 
-  <!--This section is where you can associate a command with a keyboard shortcut; this association is
-  valid within a specific UI context, that is when the shell is inside a specific mode, e.g. during
-  debugging, editing a file or when the user is using a specific designer.-->
   <KeyBindings>
-    <!--
-    To define a binding, we have to specify the sequence of keys to press to activate the command (keystate).
-    A key binding can use one or two key and optionally up to two modifiers (Alt, Control or Shift keys); the
-    keys are specified using the key1 and key2 attributes (key2 can be omitted) and the modifiers using the
-    mod1 and mod2 attributes (both optional).
-
-    The editor attribute is used to specify the UI context that activates the key binding.
-
-    Notice that Visual Studio has a lot of components and commands, so it can be difficult to find a
-    key binding not used by somebody else; if the key bindings are conflicting only one will be used
-    and one problem is that the shell will not inform the user that a conflict was found. The only
-    way to detect the problem is to start Visual Studio under debugger, try to execute any command
-    and look if there is a message in the output window about a duplicated accelerator found.
-    -->
-
-    <!--
-    In this example we want to use the <Control><1> binding for the first command defined in
-    the Buttons section above, so this is its definition:
-    -->
     <KeyBinding guid="guidMicroDudeCmdSet" id="cmdidMyCommand" editor="guidVSStd97" key1="1" mod1="Control" />
   </KeyBindings>
 
-
-  <!--
-  In this example we have always used descriptive names for the GUIDs and numeric IDs inside the definition
-  of the elements. The VSCT compiler actually enforces the usage of these names instead of hard-coding
-  the numbers in the definitions.
-
-  We have also seen that the compiler can read some of these constants from the files imported with the
-  "Extern" tag at the beginning of the file. The problem is then how to define the other constants.
-
-  The "Symbols" section is where this association between descriptive names and actual values happen.
-  -->
   <Symbols>
     <!-- Graphics -->
     <GuidSymbol name="guidIconDetect" value="{fcb34ff2-7b5b-4c64-a9ad-2342ad4cba51}">
@@ -202,11 +214,20 @@
     <GuidSymbol name="guidIconFlashAuto" value="{cf79f8cd-487c-4d26-8b63-8b45e20923c7}">
       <IDSymbol name="IconFlashAuto" value="1" />
     </GuidSymbol>
+    <GuidSymbol name="guidIconFlashAutoDisabled" value="{007801bf-1ef4-4848-8168-6872d3175a6a}">
+      <IDSymbol name="IconFlashAutoDisabled" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidIconVerify" value="{b2c74325-17a2-4b1e-8d21-9e7c88a6e438}">
+      <IDSymbol name="IconVerify" value="1" />
+    </GuidSymbol>
     <GuidSymbol name="guidIconFuse" value="{ebbeafdf-76bc-4e32-b34d-8d663c710117}">
       <IDSymbol name="IconFuse" value="1" />
     </GuidSymbol>
     <GuidSymbol name="guidIconOscillator" value="{764314b2-ba6d-4c6d-9d55-b0d44e566006}">
       <IDSymbol name="IconOscillator" value="1" />
+    </GuidSymbol>
+    <GuidSymbol name="guidIconLockBits" value="{a00e4112-e05e-4c1c-8f72-206a66c62bed}">
+      <IDSymbol name="IconLockBits" value="1" />
     </GuidSymbol>
     <GuidSymbol name="guidIconMicroDudeSettings" value="{005090f0-7f61-469e-a19c-a511a91b7502}">
       <IDSymbol name="IconMicroDudeSettings" value="1" />
@@ -227,6 +248,13 @@
       <IDSymbol name="OscillatorCommandId" value="0x0104" />
       <IDSymbol name="SettingsCommandId" value="0x0105" />
       <IDSymbol name="FlashAutoCommandId" value="0x0106" />
+      <IDSymbol name="VerifyCommandId" value="0x0107" />
+      <IDSymbol name="LockBitsCommandId" value="0x0108" />
+      
+      <IDSymbol name="DetectTextControlId" value="0x1100"/>
+      <IDSymbol name="DetectTextControlListId" value="0x1101"/>
+      
+
 
     </GuidSymbol>
 

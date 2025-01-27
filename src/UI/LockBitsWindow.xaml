@@ -1,0 +1,101 @@
+﻿<Window x:Class="MicroDude.UI.LockBitsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Lock Bits Configuration" Height="500" Width="600">
+    <!--Icon="/MicroDude;component/Resources/Icon_Lock.png">-->
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Memory Protection Mode -->
+        <GroupBox Grid.Row="0" Header="Memory Protection Mode" Margin="0,0,0,10">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Flash Memory Protection -->
+                <GroupBox Grid.Column="0" Header="Flash Memory" Margin="0,0,5,0">
+                    <StackPanel x:Name="FlashProtectionPanel">
+                        <RadioButton Content="No Protection" 
+                 GroupName="FlashProtection"
+                 Margin="0,5"/>
+                        <RadioButton Content="Disable Programming" 
+                 GroupName="FlashProtection"
+                 Margin="0,5"/>
+                        <RadioButton Content="Disable Programming and Verification" 
+                 GroupName="FlashProtection"
+                 Margin="0,5"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- EEPROM Protection -->
+                <GroupBox Grid.Column="1" Header="EEPROM" Margin="5,0,0,0">
+                    <StackPanel x:Name="EepromProtectionPanel">
+                        <RadioButton Content="No Protection" 
+                 GroupName="EepromProtection"
+                 Margin="0,5"/>
+                        <RadioButton Content="Disable Programming" 
+                 GroupName="EepromProtection"
+                 Margin="0,5"/>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+
+        <!-- Boot Section Protection -->
+        <GroupBox Grid.Row="1" Header="Boot Section Configuration" Margin="0,0,0,10">
+            <StackPanel Margin="10">
+                <CheckBox x:Name="BootSectionEnabled" 
+                         Content="Enable Boot Section"
+                         Margin="0,5"/>
+                <ComboBox x:Name="BootSectionSize" 
+          Margin="20,5,0,5"
+          IsEnabled="{Binding ElementName=BootSectionEnabled, Path=IsChecked}"/>
+                <CheckBox x:Name="BootSectionProtection" 
+          Content="Protect Boot Section" 
+          Margin="20,5,0,5"
+          IsEnabled="{Binding ElementName=BootSectionEnabled, Path=IsChecked}"/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Current Configuration -->
+        <GroupBox Grid.Row="2" Header="Current Configuration" Margin="0,0,0,10">
+            <TextBlock x:Name="CurrentConfigText" 
+                      Height="70"
+                      TextWrapping="Wrap" 
+                      Margin="10"/>
+        </GroupBox>
+
+        <!-- Debug Info/Actual Value -->
+        <GroupBox Grid.Row="3" Header="Actual Fuse Value" Margin="0,0,0,10">
+            <TextBlock x:Name="ActualLockBitsText" 
+                      TextWrapping="Wrap" 
+                      Margin="10"/>
+        </GroupBox>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="4" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+            <Button x:Name="SwitchToFuseBits"
+                    Content="Switch to Fuse Bits" 
+                    Width="120" 
+                    Margin="0,0,10,0"/>
+            <Button x:Name="Read"
+                    Content="Read" 
+                    Width="80" 
+                    Margin="0,0,10,0"/>
+            <Button x:Name="Write"
+                    Content="Write" 
+                    Width="80"/>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,85 @@
+﻿<Window x:Class="MicroDude.UI.OscillatorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Oscillator Configuration" Height="554.996" Width="588.98"
+        Icon="/MicroDude;component/Resources/Icon_Oscillator.png">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Source Selection -->
+        <GroupBox Grid.Row="0" Header="Clock Source" Margin="0,0,0,10">
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Internal RC Options -->
+                <GroupBox Grid.Column="0" Header="Internal RC" Margin="0,0,5,0">
+                    <StackPanel x:Name="InternalOscillatorPanel"/>
+                </GroupBox>
+
+                <!-- External Options -->
+                <GroupBox Grid.Column="1" Header="External" Margin="5,0,0,0">
+                    <StackPanel>
+                        <ComboBox x:Name="ExternalFrequencyCombo" 
+                                 Margin="0,0,0,5"/>
+                        <RadioButton x:Name="ExternalCrystal" 
+                                   Content="Crystal/Resonator" 
+                                   Margin="0,5"/>
+                        <RadioButton x:Name="ExternalClock" 
+                                   Content="Clock" 
+                                   Margin="0,25"/>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </GroupBox>
+
+        <!-- Startup Configuration -->
+        <GroupBox Grid.Row="1" Header="Startup Configuration" Margin="0,0,0,10">
+            <StackPanel Margin="10">
+                <TextBlock TextWrapping="Wrap" 
+                          Text="The startup time determines how long to wait after power-up or reset:"/>
+                <ComboBox x:Name="StartupTimeCombo" Margin="0,5"/>
+                <TextBlock TextWrapping="Wrap" 
+                          FontStyle="Italic"
+                          Margin="0,5,0,0"
+                          Text="Note: Longer times provide more stable oscillation but increase startup delay."/>
+            </StackPanel>
+        </GroupBox>
+
+        <!-- Current Configuration -->
+        <GroupBox Grid.Row="2" Header="Selected Configuration" Margin="0,0,0,10">
+            <TextBlock x:Name="CurrentConfigText"  Height="70"
+                      TextWrapping="Wrap" 
+                      Margin="10"/>
+        </GroupBox>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="4" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    Margin="0,10,0,0">
+            <Button Content="Switch to Fuse Bits" 
+                    Width="120" 
+                    Margin="0,0,10,0" 
+                    Click="SwitchToFuseBits_Click"/>
+            <Button x:Name="Read" 
+                    Content="Read" 
+                    Width="80" 
+                    Margin="0,0,10,0" 
+                    Click="ReadSettings_Click"/>
+            <Button x:Name="Write" 
+                    Content="Write" 
+                    Width="80" 
+                    Click="Write_click"/>
+        </StackPanel>
+    </Grid>
+</Window>

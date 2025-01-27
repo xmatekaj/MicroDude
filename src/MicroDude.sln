@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroDude", "MicroDude.csproj", "{F3E3199F-C005-4A14-B96B-974896986EDC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroDude.Tests", "..\MicroDude.Tests\MicroDude.Tests.csproj", "{1302DF4F-68F2-46C1-B7AA-37B07C4C5C41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F3E3199F-C005-4A14-B96B-974896986EDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3E3199F-C005-4A14-B96B-974896986EDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3E3199F-C005-4A14-B96B-974896986EDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1302DF4F-68F2-46C1-B7AA-37B07C4C5C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1302DF4F-68F2-46C1-B7AA-37B07C4C5C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1302DF4F-68F2-46C1-B7AA-37B07C4C5C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1302DF4F-68F2-46C1-B7AA-37B07C4C5C41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
