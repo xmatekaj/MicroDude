@@ -13,7 +13,6 @@ namespace MicroDude.UI
 {
     public partial class LockBitsWindow : Window
     {
-        private readonly FuseBitProgrammer _programmer;
         private readonly AvrDudeWrapper _avrDudeWrapper;
         private readonly ProgrammingStateService _programmingState;
         private readonly Style _originalWriteStyle;
@@ -36,14 +35,12 @@ namespace MicroDude.UI
             public string Description { get; set; }
         }
 
-        public LockBitsWindow(FuseBitProgrammer programmer = null)
+        public LockBitsWindow()
         {
             try
             {
                 InitializeComponent();
-                _programmer = programmer;
                 _programmingState = ProgrammingStateService.Instance;
-
                 string extensionDirectory = System.IO.Path.GetDirectoryName(GetType().Assembly.Location);
                 string avrDudeExePath = System.IO.Path.Combine(extensionDirectory, "AvrDude", "avrdude.exe");
                 string avrDudeConfigPath = System.IO.Path.Combine(extensionDirectory, "AvrDude", "avrdude.conf");
@@ -68,13 +65,13 @@ namespace MicroDude.UI
                 InitializeUI();
                 UpdateCurrentConfigText();
 
-                if (_programmer == null)
-                {
-                    Write.IsEnabled = false;
-                    Read.IsEnabled = false;
-                    Write.ToolTip = "Programmer not available";
-                    Read.ToolTip = "Programmer not available";
-                }
+                //if (_programmer == null)
+                //{
+                //    Write.IsEnabled = false;
+                //    Read.IsEnabled = false;
+                //    Write.ToolTip = "Programmer not available";
+                //    Read.ToolTip = "Programmer not available";
+                //}
             }
             catch (Exception ex)
             {
@@ -337,11 +334,6 @@ namespace MicroDude.UI
 
         private void Write_Click(object sender, RoutedEventArgs e)
         {
-            if (_programmer == null)
-            {
-                ShowButtonFeedback(Write, false, "No Programmer");
-                return;
-            }
             try
             {
                 Write.IsEnabled = false;
@@ -385,11 +377,6 @@ namespace MicroDude.UI
 
         private void Read_Click(object sender, RoutedEventArgs e)
         {
-            if (_programmer == null)
-            {
-                ShowButtonFeedback(Read, false, "No Programmer");
-                return;
-            }
             try
             {
                 Read.IsEnabled = false;

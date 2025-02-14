@@ -217,6 +217,8 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <Compile Include="Commands\BaseCommand.cs" />
     <Compile Include="Commands\Detect.cs" />
     <Compile Include="Commands\FlashAutoCommand.cs" />
+    <Compile Include="Models\FuseBitOption.cs" />
+    <Compile Include="Services\FuseBitsService.cs" />
     <Compile Include="UI\EnumDescriptionConverter.cs" />
     <Compile Include="Core\MemoryUsageInfo.cs" />
     <Compile Include="Core\OutputPaneUtils.cs" />
@@ -237,11 +239,9 @@ PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
     <Compile Include="Models\Microcontroller.cs" />
     <Compile Include="Models\OutputDestination.cs" />
     <Compile Include="Models\Programmer.cs" />
-    <Compile Include="Models\FuseBitOption.cs" />
     <Compile Include="Core\Logger.cs" />
     <Compile Include="Parsers\AvrdudeConfConstants.cs" />
     <Compile Include="Parsers\AvrdudeConfParser.cs" />
-    <Compile Include="Core\FuseBitsProgrammer.cs" />
     <Compile Include="Guids.cs" />
     <Compile Include="Parsers\MicrocontrollerParser.cs" />
     <Compile Include="PkgCmdId.cs" />

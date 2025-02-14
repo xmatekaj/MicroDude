@@ -18,7 +18,7 @@ namespace MicroDude
         public const int cmdidMicroDudeToolsMenuId = 0x1023;
         public const int cmdidDetectCommandId = 0x0101;
         public const int cmdidFlashCommandId = 0x0102;
-        public const int cmdidFuseCommandId = 0x0103;
+        public const int cmdidFuseBitsCommandId = 0x0103;
         public const int cmdidOscillatorCommandId = 0x0104;
         public const int cmdidSettingsCommandId = 0x0105;
         public const int cmdidFlashAutoCommandId = 0x0106;

@@ -40,7 +40,7 @@ namespace MicroDude
         private string _avrDudeExePath;
         private string _avrDudeConfigPath;
         private UsbDeviceService _usbDeviceService;
-        private FuseBitProgrammer _fuseBitProgrammer;
+        //private FuseBitProgrammer _fuseBitProgrammer;
         private AvrDudeWrapper _avrDudeWrapper;
         private XmlParser _xmlParser;
         private ProjectMonitor _projectMonitor;
@@ -67,7 +67,6 @@ namespace MicroDude
                 InitializeProgrammingStateService();
                 InitializeUsbDeviceService();
                 InitializeMenuCommand();
-                _fuseBitProgrammer = new FuseBitProgrammer();
                 InitializeProjectMonitor();
                 RegisterCommands();
                 _avrDudeWrapper = new AvrDudeWrapper(_avrDudeExePath, _avrDudeConfigPath);
@@ -394,6 +393,11 @@ namespace MicroDude
             MenuCommand oscillatorCommand = new MenuCommand(OscillatorCommandCallback, oscillatorCommandId);
             commandService.AddCommand(oscillatorCommand);
 
+            // Register Fuse Bit command
+            CommandID fuseBitsCommandId = new CommandID(GuidsList.guidMicroDudeCmdSet, PkgCmdIDList.cmdidFuseBitsCommandId);
+            MenuCommand fuseBitsCommand = new MenuCommand(FuseBitsCommandCallback, fuseBitsCommandId);
+            commandService.AddCommand(fuseBitsCommand);
+
             // Register Lock Bit command
             CommandID lockBitsCommandId = new CommandID(GuidsList.guidMicroDudeCmdSet, PkgCmdIDList.cmdidLockBitsCommandId);
             MenuCommand lockBitsCommand = new MenuCommand(LockBitsCommandCallback, lockBitsCommandId);
@@ -450,14 +454,21 @@ namespace MicroDude
         private void LockBitsCommandCallback(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            LockBitsWindow lockBitsWindow = new LockBitsWindow(_fuseBitProgrammer);
+            var lockBitsWindow = new LockBitsWindow();
             lockBitsWindow.Show();
+        }
+
+        private void FuseBitsCommandCallback(object sender, EventArgs e)
+        {
+            ThreadHelper.ThrowIfNotOnUIThread();
+            var fuseBitsWindow = new FuseBitsWindow();
+            fuseBitsWindow.Show();
         }
 
         private void OscillatorCommandCallback(object sender, EventArgs e)
         {
             ThreadHelper.ThrowIfNotOnUIThread();
-            OscillatorWindow oscillatorWindow = new OscillatorWindow(_fuseBitProgrammer);
+            var oscillatorWindow = new OscillatorWindow();
             oscillatorWindow.Show();
         }
 

@@ -1,7 +1,10 @@
 ﻿<Window x:Class="MicroDude.UI.LockBitsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Lock Bits Configuration" Height="500" Width="600">
+        Title="Lock Bits Configuration" Height="670" Width="600"
+        Icon="/MicroDude;component/Resources/Icon_Lock.png"
+        WindowStartupLocation="CenterScreen"
+        >
     <!--Icon="/MicroDude;component/Resources/Icon_Lock.png">-->
 
     <Grid Margin="20">

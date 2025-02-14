@@ -6,6 +6,7 @@ using MicroDude.Models;
 using MicroDude.Parsers;
 using MicroDude.Properties;
 using System.IO;
+using MicroDude.Services;
 
 namespace MicroDude.Core
 {
@@ -20,6 +21,9 @@ namespace MicroDude.Core
     {
         private static readonly object _lock = new object();
         private static volatile ProgrammingStateService _instance;
+
+        private readonly FuseBitsService _fuseBitsService;
+        public FuseBitsService FuseBits => _fuseBitsService;
 
         private string _manualProgrammer;
         private string _port;
@@ -159,6 +163,7 @@ namespace MicroDude.Core
             try
             {
                 _xmlParser = new XmlParser();
+                _fuseBitsService = new FuseBitsService();
                 Logger.Log("XML Parser initialized successfully");
             }
             catch (Exception ex)
@@ -185,6 +190,9 @@ namespace MicroDude.Core
 
                     // Update MCU
                     _currentMicrocontroller = _xmlParser.ParseDevice(deviceName);
+
+                    // Update FuseBits service with new microcontroller
+                    _fuseBitsService.UpdateDevice(_currentMicrocontroller);
 
                     // Log MCU info (safely)
                     LogMicrocontrollerInfo(_currentMicrocontroller);

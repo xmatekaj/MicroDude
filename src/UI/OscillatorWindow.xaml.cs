@@ -15,7 +15,6 @@ namespace MicroDude.UI
 {
     public partial class OscillatorWindow : Window
     {
-        private readonly FuseBitProgrammer _programmer;
         private readonly AvrDudeWrapper _avrDudeWrapper;
         private readonly ProgrammingStateService _programmingState;
         private readonly Style _originalWriteStyle;
@@ -41,10 +40,9 @@ namespace MicroDude.UI
 
         private Dictionary<string, OscillatorConfig> _configMap;
 
-        public OscillatorWindow(FuseBitProgrammer programmer)
+        public OscillatorWindow()
         {
             InitializeComponent();
-            _programmer = programmer;
             _programmingState = ProgrammingStateService.Instance;
             // Store original button states
             _originalWriteStyle = Write.Style;
