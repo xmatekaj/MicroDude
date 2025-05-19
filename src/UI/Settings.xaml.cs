@@ -39,6 +39,19 @@ namespace MicroDude.UI
             }
         }
 
+        public bool AutoDetectMicrocontroller
+        {
+            get { return MicroDudeSettings.Default.AutoDetectMicrocontroller; }
+            set
+            {
+                if (MicroDudeSettings.Default.AutoDetectMicrocontroller != value)
+                {
+                    MicroDudeSettings.Default.AutoDetectMicrocontroller = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         public bool AutoDetectUsb
         {
             get { return MicroDudeSettings.Default.AutoDetectUsb; }
@@ -238,6 +251,7 @@ namespace MicroDude.UI
             // Load other settings
             AutoFlash = MicroDudeSettings.Default.AutoFlash;
             AutoDetectUsb = MicroDudeSettings.Default.AutoDetectUsb;
+            AutoDetectMicrocontroller = MicroDudeSettings.Default.AutoDetectMicrocontroller;
             OutputDestinationComboBox.ItemsSource = System.Enum.GetValues(typeof(OutputDestination));
             OutputDestinationComboBox.SelectedItem = SelectedOutputDestination;
             Programmer = MicroDudeSettings.Default.Programmer;
@@ -591,6 +605,7 @@ namespace MicroDude.UI
             }
             MicroDudeSettings.Default.AutoFlash = AutoFlash;
             MicroDudeSettings.Default.AutoDetectUsb = AutoDetectUsb;
+            MicroDudeSettings.Default.AutoDetectMicrocontroller = AutoDetectMicrocontroller;
             MicroDudeSettings.Default.Programmer = Programmer;
             MicroDudeSettings.Default.OutputDestination = (int)SelectedOutputDestination;
             var selectedPort = PortComboBox.SelectedItem as PortInfo;

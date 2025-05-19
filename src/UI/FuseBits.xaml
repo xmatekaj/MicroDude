@@ -1,55 +1,64 @@
 ﻿<Window x:Class="MicroDude.UI.FuseBitsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Fuse Bit Programmer" 
-        Height="450" 
+        Title="Fuse Bit Configuration" 
+        Height="700" 
         Width="900"
         WindowStartupLocation="CenterScreen"
-        Icon="/MicroDude;component/Resources/Icon_Fuse.png"
         Background="{x:Static SystemColors.ControlBrush}">
-    <Grid Margin="10">
-        <TabControl>
-            <TabItem Header="Presets">
-                <StackPanel Margin="10">
-                    <ComboBox x:Name="FuseSelector" 
-                             Height="25"
-                             Margin="0,5"
-                             SelectionChanged="FuseSelector_SelectionChanged"
-                             ItemsSource="{Binding AvailableFuses}"/>
 
-                    <ComboBox x:Name="OptionSelector" 
-                             Height="25"
-                             Margin="0,5"
-                             SelectionChanged="OptionSelector_SelectionChanged"
-                             ItemsSource="{Binding SelectedFuseOptions}"
-                             DisplayMemberPath="Caption"/>
+    <Window.Resources>
+        <Style x:Key="GroupHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+        </Style>
 
-                    <StackPanel Orientation="Horizontal" 
-                              HorizontalAlignment="Right" 
-                              Margin="0,10">
-                        <Button x:Name="ReadButton"
-                                Content="Read" 
-                                Click="ReadFuses_Click"
-                                Width="100"
-                                Height="25"
-                                Margin="0,0,10,0"/>
-                        <Button x:Name="WriteButton"
-                                Content="Write" 
-                                Click="WriteFuses_Click"
-                                Width="100"
-                                Height="25"/>
-                    </StackPanel>
-                </StackPanel>
+        <Style x:Key="DescriptionTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#666666"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Margin" Value="0,0,0,15"/>
+        </Style>
+
+        <Style x:Key="ConfigGroupStyle" TargetType="GroupBox">
+            <Setter Property="Margin" Value="0,0,0,15"/>
+            <Setter Property="Padding" Value="10"/>
+        </Style>
+
+        <Style x:Key="ConfigComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Margin" Value="0,5,0,10"/>
+            <Setter Property="Height" Value="24"/>
+        </Style>
+
+        <Style x:Key="ConfigCheckBoxStyle" TargetType="CheckBox">
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        
+
+        <TabControl Grid.Row="1">
+            <!-- Presets Tab -->
+            <TabItem Header="Feature Configuration">
+                
             </TabItem>
 
-            <TabItem Header="Manual">
-                <Grid>
+            <!-- Manual Tab -->
+            <TabItem Header="Manual Configuration">
+                <Grid Margin="15">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <!-- Fuse Bit Sections in Horizontal Layout -->
+                    <!-- Manual Bit Setting Grid -->
                     <Grid Grid.Row="0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -57,108 +66,77 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <!-- Low Fuse Section -->
-                        <GroupBox Grid.Column="0" Header="Low Fuse Bits" Margin="5">
-                            <StackPanel>
-                                <!-- Bit Checkboxes -->
-                                <StackPanel x:Name="LowFusePanel" Margin="10"/>
-
-                                <!-- Value Entry -->
-                                <DockPanel Margin="10,5">
-                                    <TextBlock Text="Value (hex):" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                    <TextBox x:Name="LowFuseValue" Width="50" HorizontalAlignment="Left"
-                                             MaxLength="2" TextChanged="LowFuseValue_TextChanged"/>
-                                </DockPanel>
-
-                                <!-- Control Buttons -->
-                                <StackPanel Orientation="Horizontal" Margin="10,5">
-                                    <Button Content="Read Low" 
-                                            Click="ReadLowFuse_Click"
-                                            Width="80"
-                                            Height="25"
-                                            Margin="0,0,10,0"/>
-                                    <Button Content="Write Low" 
-                                            Click="WriteLowFuse_Click"
-                                            Width="80"
-                                            Height="25"/>
-                                </StackPanel>
+                        <!-- Low Fuse -->
+                        <GroupBox Header="Low Fuse" Grid.Column="0" Margin="0,0,10,0">
+                            <StackPanel x:Name="LowFusePanel">
+                                <TextBlock Text="Controls clock configuration and startup time"
+                                         Style="{StaticResource DescriptionTextStyle}"/>
                             </StackPanel>
                         </GroupBox>
 
-                        <!-- High Fuse Section -->
-                        <GroupBox Grid.Column="1" Header="High Fuse Bits" Margin="5">
-                            <StackPanel>
-                                <!-- Bit Checkboxes -->
-                                <StackPanel x:Name="HighFusePanel" Margin="10"/>
-
-                                <!-- Value Entry -->
-                                <DockPanel Margin="10,5">
-                                    <TextBlock Text="Value (hex):" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                    <TextBox x:Name="HighFuseValue" Width="50" HorizontalAlignment="Left"
-                                             MaxLength="2" TextChanged="HighFuseValue_TextChanged"/>
-                                </DockPanel>
-
-                                <!-- Control Buttons -->
-                                <StackPanel Orientation="Horizontal" Margin="10,5">
-                                    <Button Content="Read High" 
-                                            Click="ReadHighFuse_Click"
-                                            Width="80"
-                                            Height="25"
-                                            Margin="0,0,10,0"/>
-                                    <Button Content="Write High" 
-                                            Click="WriteHighFuse_Click"
-                                            Width="80"
-                                            Height="25"/>
-                                </StackPanel>
+                        <!-- High Fuse -->
+                        <GroupBox Header="High Fuse" Grid.Column="1" Margin="5,0">
+                            <StackPanel x:Name="HighFusePanel">
+                                <TextBlock Text="Controls reset, debug and programming options"
+                                         Style="{StaticResource DescriptionTextStyle}"/>
                             </StackPanel>
                         </GroupBox>
 
-                        <!-- Extended Fuse Section -->
-                        <GroupBox Grid.Column="2" Header="Extended Fuse Bits" Margin="5">
-                            <StackPanel>
-                                <!-- Bit Checkboxes -->
-                                <StackPanel x:Name="ExtendedFusePanel" Margin="10"/>
-
-                                <!-- Value Entry -->
-                                <DockPanel Margin="10,5">
-                                    <TextBlock Text="Value (hex):" VerticalAlignment="Center" Margin="0,0,10,0"/>
-                                    <TextBox x:Name="ExtendedFuseValue" Width="50" HorizontalAlignment="Left"
-                                             MaxLength="2" TextChanged="ExtendedFuseValue_TextChanged"/>
-                                </DockPanel>
-
-                                <!-- Control Buttons -->
-                                <StackPanel Orientation="Horizontal" Margin="10,5">
-                                    <Button Content="Read Ext" 
-                                            Click="ReadExtFuse_Click"
-                                            Width="80"
-                                            Height="25"
-                                            Margin="0,0,10,0"/>
-                                    <Button Content="Write Ext" 
-                                            Click="WriteExtFuse_Click"
-                                            Width="80"
-                                            Height="25"/>
-                                </StackPanel>
+                        <!-- Extended Fuse -->
+                        <GroupBox Header="Extended Fuse" Grid.Column="2" Margin="10,0,0,0">
+                            <StackPanel x:Name="ExtendedFusePanel">
+                                <TextBlock Text="Controls brown-out detection and special features"
+                                         Style="{StaticResource DescriptionTextStyle}"/>
                             </StackPanel>
                         </GroupBox>
                     </Grid>
 
-                    <!-- Global Buttons -->
-                    <StackPanel Grid.Row="1" 
-                              Orientation="Horizontal" 
-                              Margin="10"
-                              HorizontalAlignment="Right">
-                        <Button Content="Read All" 
-                                Click="ReadFuses_Click"
-                                Width="100"
-                                Height="25"
-                                Margin="0,0,10,0"/>
-                        <Button Content="Write All" 
-                                Click="WriteFuses_Click"
-                                Width="100"
-                                Height="25"/>
-                    </StackPanel>
+                    <!-- Current Values -->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0"  Margin="0,10,0,0">
+                            <TextBox x:Name="LowFuseValue" 
+                                        Width="60" 
+                                        HorizontalAlignment="Center"
+                                        MaxLength="2"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1"   Margin="0,10,0,0">
+                            <TextBox x:Name="HighFuseValue" 
+                                        Width="60" 
+                                        HorizontalAlignment="Center"
+                                        MaxLength="2"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Margin="0,10,0,0">
+                            <TextBox x:Name="ExtendedFuseValue" 
+                                        Width="60" 
+                                        HorizontalAlignment="Center"
+                                        MaxLength="2"/>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>
+
+        <!-- Control Buttons -->
+        <StackPanel Grid.Row="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    Margin="0,15,0,0">
+            <Button Content="Read" 
+                    Width="80"
+                    Height="30"
+                    Margin="0,0,10,0"
+                    Click="ReadFuses_Click"/>
+            <Button Content="Write" 
+                    Width="80"
+                    Height="30"
+                    Click="WriteFuses_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

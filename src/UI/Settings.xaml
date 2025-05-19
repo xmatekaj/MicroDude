@@ -134,16 +134,16 @@
         <GroupBox Header="MicroDude Configuration" Grid.Row="1" Margin="0,0,0,20">
             <StackPanel Margin="10">
                 <DockPanel LastChildFill="True" Margin="0,0,0,10">
-                    <!-- Auto Flash Option -->
-                    <CheckBox x:Name="AutoFlashCheckBox" 
-                      Content="Auto Flash" 
-                      IsChecked="{Binding AutoFlash, Mode=TwoWay}"
-                      Margin="0,0,20,10" VerticalAlignment="Center"/>
-
                     <!-- Auto Detect USB Programmer Option -->
                     <CheckBox x:Name="AutoDetectUsbCheckBox" 
                       Content="Auto Detect USB Programmer" 
                       IsChecked="{Binding AutoDetectUsb, Mode=TwoWay}"
+                      Margin="0,0,20,10" VerticalAlignment="Center"/>
+                    
+                    <!-- Auto Flash Option -->
+                    <CheckBox x:Name="AutoFlashCheckBox" 
+                      Content="Auto Flash" 
+                      IsChecked="{Binding AutoFlash, Mode=TwoWay}"
                       Margin="0,0,20,10" VerticalAlignment="Center"/>
 
                     <!-- Color Output Option -->
@@ -165,6 +165,14 @@
                         <Image Source="/MicroDude;component/Resources/Icon_Color.png"
                                Width="16" Height="16"/>
                     </Button>
+                </DockPanel>
+                <DockPanel LastChildFill="True" Margin="0,0,0,10">
+                    <!-- Auto Detect Microcontroller Option -->
+                    <CheckBox x:Name="AutoDetectMicrocontrollerCheckBox" 
+                      Content="Auto Detect Microcontroller" 
+                      IsChecked="{Binding AutoDetectMicrocontroller, Mode=TwoWay}"
+                      Margin="0,0,20,10" VerticalAlignment="Center"/>
+                 
                 </DockPanel>
                 <!-- Output Destination Option -->
                 <DockPanel LastChildFill="True" Margin="0,0,0,10" >

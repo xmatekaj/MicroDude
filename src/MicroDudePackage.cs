@@ -76,8 +76,8 @@ namespace MicroDude
                 InitializeClassifier();
 
                 OutputPaneHandler.PrintTextToOutputPane("MicroDude is up and ready!");
-
-                PerformProgrammersCheck();
+                PerformChecks();
+                
                 
             }
             catch (Exception ex)
@@ -87,9 +87,41 @@ namespace MicroDude
             }
         }
 
+        private void PerformChecks()
+        {
+            PerformProgrammersCheck();
+            PerformMicrocontrollerCheck();
+        }
+
+        private void PerformMicrocontrollerCheck()
+        {
+            if (!MicroDudeSettings.Default.AutoDetectUsb ||
+                !MicroDudeSettings.Default.AutoDetectMicrocontroller)
+                return;
+            ThreadHelper.JoinableTaskFactory.RunAsync(async delegate
+            {
+                await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
+                CheckMicrocontroller();
+            });
+        }
+
+        private void CheckMicrocontroller()
+        {
+            try
+            {
+                DetectCommandCallback(null, null);
+            }
+            catch (Exception ex)
+            {
+                ActivityLog.LogError(nameof(MicroDudePackage), $"Error checking microcontroller: {ex}");
+                OutputPaneHandler.PrintTextToOutputPane($"Error checking for microcontroller: {ex.Message}");
+            }
+        }
+
         private void PerformProgrammersCheck()
         {
-            // Final step after initialization
+            if (!MicroDudeSettings.Default.AutoDetectUsb)
+                return;
             ThreadHelper.JoinableTaskFactory.RunAsync(async delegate
             {
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
@@ -413,7 +445,17 @@ namespace MicroDude
             MenuCommand verifyCommand = new MenuCommand(VerifyCommandCallback, verifyCommandId);
             commandService.AddCommand(verifyCommand);
 
+            // Register Flash command
+            CommandID flashCommandId = new CommandID(GuidsList.guidMicroDudeCmdSet, PkgCmdIDList.cmdidFlashCommandId);
+            MenuCommand flashCommand = new MenuCommand(FlashCommandCallback, flashCommandId);
+            commandService.AddCommand(flashCommand);
+
             FlashAutoCommand.Initialize(this);
+        }
+
+        private void FlashCommandCallback(object sender, EventArgs e)
+        {
+            OutputPaneHandler.PrintTextToOutputPane("FlashCommandCallback");
         }
 
         private void DetectCommandCallback(object sender, EventArgs e)
@@ -453,6 +495,7 @@ namespace MicroDude
 
         private void LockBitsCommandCallback(object sender, EventArgs e)
         {
+            OutputPaneHandler.PrintTextToOutputPane("LockBitsCommandCallback");
             ThreadHelper.ThrowIfNotOnUIThread();
             var lockBitsWindow = new LockBitsWindow();
             lockBitsWindow.Show();
@@ -460,6 +503,7 @@ namespace MicroDude
 
         private void FuseBitsCommandCallback(object sender, EventArgs e)
         {
+            OutputPaneHandler.PrintTextToOutputPane("FuseBitsCommandCallback");
             ThreadHelper.ThrowIfNotOnUIThread();
             var fuseBitsWindow = new FuseBitsWindow();
             fuseBitsWindow.Show();
@@ -467,6 +511,7 @@ namespace MicroDude
 
         private void OscillatorCommandCallback(object sender, EventArgs e)
         {
+            OutputPaneHandler.PrintTextToOutputPane("OscillatorCommandCallback");
             ThreadHelper.ThrowIfNotOnUIThread();
             var oscillatorWindow = new OscillatorWindow();
             oscillatorWindow.Show();

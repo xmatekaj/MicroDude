@@ -212,5 +212,17 @@ namespace MicroDude.Properties {
                 this["Verbose"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoDetectMicrocontroller {
+            get {
+                return ((bool)(this["AutoDetectMicrocontroller"]));
+            }
+            set {
+                this["AutoDetectMicrocontroller"] = value;
+            }
+        }
     }
 }

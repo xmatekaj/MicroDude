@@ -292,12 +292,12 @@ namespace MicroDude.Core
                 var parameters = ProgrammingStateService.Instance.GetProgrammingParameters();
                 string microDudeStatus = GetFormattedStatusText(parameters);
 
-                // Check if MicroDude status changed
-                if (microDudeStatus == _currentMicroDudeStatus)
+                // TODO, need rework
+                if (microDudeStatus == _currentMicroDudeStatus || microDudeStatus != currentStatus)
                 {
                     // Check if VS status changed
                     string newFullStatus = CombineStatusParts(statusParts[0], microDudeStatus, statusParts[1]);
-                    if (newFullStatus == _currentFullStatus)
+                    if (newFullStatus == _currentFullStatus && microDudeStatus == currentStatus)
                     {
                         // Nothing changed, skip update
                         return;
@@ -310,6 +310,12 @@ namespace MicroDude.Core
 
                 string combinedStatus = CombineStatusParts(statusParts[0], microDudeStatus, statusParts[1]);
                 _currentFullStatus = combinedStatus;
+
+                if (!currentStatus.Contains("Microdude"))
+                {
+                    combinedStatus = currentStatus + combinedStatus;
+                }
+                combinedStatus.TrimStart();
 
                 Logger.Log($"Status bar updated (changed): {combinedStatus}");
                 _statusBar.SetText(combinedStatus);
